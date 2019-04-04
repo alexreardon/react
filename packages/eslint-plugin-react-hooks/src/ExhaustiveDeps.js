@@ -92,7 +92,9 @@ export default {
         // These are only used for optimization.
         if (
           reactiveHookName === 'useMemo' ||
-          reactiveHookName === 'useCallback'
+          reactiveHookName === 'useCallback' ||
+          reactiveHookName === 'useMemoOne' ||
+          reactiveHookName === 'useCallbackOne'
         ) {
           // TODO: Can this have an autofix?
           context.report({
@@ -1332,7 +1334,9 @@ function getReactiveHookCallbackIndex(calleeNode, options) {
     case 'useEffect':
     case 'useLayoutEffect':
     case 'useCallback':
+    case 'useCallbackOne':
     case 'useMemo':
+    case 'useMemoOne':
       // useEffect(fn)
       return 0;
     case 'useImperativeHandle':
